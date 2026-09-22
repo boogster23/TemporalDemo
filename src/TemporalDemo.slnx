@@ -1,4 +1,7 @@
 <Solution>
+  <Project Path="TemporalDemo.ApiService/TemporalDemo.ApiService.csproj" />
   <Project Path="TemporalDemo.AppHost/TemporalDemo.AppHost.csproj" />
+  <Project Path="TemporalDemo.Contracts/TemporalDemo.Contracts.csproj" />
   <Project Path="TemporalDemo.ServiceDefaults/TemporalDemo.ServiceDefaults.csproj" />
+  <Project Path="TemporalDemo.Worker/TemporalDemo.Worker.csproj" />
 </Solution>
