@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TemporalDemo.AppHost/TemporalDemo.AppHost.csproj" />
+  <Project Path="TemporalDemo.ServiceDefaults/TemporalDemo.ServiceDefaults.csproj" />
+</Solution>
