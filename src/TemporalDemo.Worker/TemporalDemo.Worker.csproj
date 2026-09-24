@@ -9,5 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
+    <PackageReference Include="Temporalio" Version="1.19.0" />
+    <PackageReference Include="Temporalio.Extensions.Hosting" Version="1.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TemporalDemo.Contracts\TemporalDemo.Contracts.csproj" />
+    <ProjectReference Include="..\TemporalDemo.ServiceDefaults\TemporalDemo.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

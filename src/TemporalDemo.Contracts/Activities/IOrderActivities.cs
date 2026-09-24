@@ -5,7 +5,7 @@ namespace TemporalDemo.Contracts;
 public interface IOrderActivities
 {
     [Activity]
-    Task<OrderStatus> ProcessPaymentAsync(ProcessPayment payment);
+     Task<PaymentResult> ProcessPaymentAsync(ProcessPayment payment);
 
     [Activity]
     Task PublishOrderSubmittedAsync(OrderSubmitted orderSubmitted);
