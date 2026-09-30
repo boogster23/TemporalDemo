@@ -1,6 +1,23 @@
 @TemporalDemo.ApiService_HostAddress = http://localhost:5070
 
-GET {{TemporalDemo.ApiService_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. Health Check
+GET {{TemporalDemo.ApiService_HostAddress}}/alive
 
-###
+### 2. Submit Order (Approved: Amount <= $1000)
+POST {{TemporalDemo.ApiService_HostAddress}}.orders
+Content-Type: application/json
+{
+    "customerNumber": "CUST-001",
+    "amount": 250.00
+}
+
+### 3. Submit Order (Declined: Amount > $1000)
+POST {{TemporalDemo.ApiService_HostAddress}/orders}
+Content-Type: application/json
+{
+    "customerNumber": "CUST-002",
+    "amount": 1500.00
+}
+
+### 4. Query Order Stats (Use OrderId from POST response)
+GET {{TemporalDemo.ApiService_HostAddress}}/orders/<ORDER_ID_HERE>

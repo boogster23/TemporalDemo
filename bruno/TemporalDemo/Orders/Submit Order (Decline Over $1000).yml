@@ -1,0 +1,45 @@
+info:
+  name: Submit Order (Decline Over $1000)
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/orders"
+  auth: inherit
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "customerNumber": "CUST-HIGH-ROLLER",
+        "amount": 1500.00
+      }
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "202"
+    - expression: res.body.customerNumber
+      operator: eq
+      value: CUST-HIGH-ROLLER
+    - expression: res.body.amount
+      operator: eq
+      value: "1500.00"
+    - expression: res.body.orderId
+      operator: isDefined
+  scripts:
+    postResponse: |-
+      if (res.body && res.body.orderId) {
+        bru.setVar("lastOrderId", res.body.orderId);
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+

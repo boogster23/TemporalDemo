@@ -1,0 +1,45 @@
+info:
+  name: Submit Order
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/orders"
+  auth: inherit
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "customerNumber": "CUST-BRUNO-001",
+        "amount": 299.99
+      }
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "202"
+    - expression: res.body.customerNumber
+      operator: eq
+      value: CUST-BRUNO-001
+    - expression: res.body.amount
+      operator: eq
+      value: "299.99"
+    - expression: res.body.orderId
+      operator: isDefined
+  scripts:
+    postResponse: |-
+      if (res.body && res.body.orderId) {
+        bru.setVar("lastOrderId", res.body.orderId);
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+

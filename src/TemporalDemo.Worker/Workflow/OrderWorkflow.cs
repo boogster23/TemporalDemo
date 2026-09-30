@@ -3,6 +3,7 @@ using Temporalio.Workflows;
 
 namespace TemporalDemo.Worker.Workflows;
 
+[Workflow]
 public class OrderWorkflow : IOrderWorkflow
 {
     private OrderStatus? _status;
@@ -46,8 +47,9 @@ public class OrderWorkflow : IOrderWorkflow
         {
             _status = _status with
             {
-                CurrentState = "Cancelled",
-                FailureReason = paymentResult.FailureReason
+                CurrentState = "Completed",
+                PaymentTransactionId = paymentResult.TransactionId,
+                CompletedAt = Workflow.UtcNow
             };
         }
         else
@@ -56,7 +58,7 @@ public class OrderWorkflow : IOrderWorkflow
             {
                 CurrentState = "PaymentFailed",
                 FailureReason = paymentResult.FailureReason,
-                CompletedAt = DateTime.UtcNow
+                CompletedAt = Workflow.UtcNow
             };
         }
 
