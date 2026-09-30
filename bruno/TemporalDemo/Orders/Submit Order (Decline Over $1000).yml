@@ -34,7 +34,7 @@ runtime:
   scripts:
     postResponse: |-
       if (res.body && res.body.orderId) {
-        bru.setVar("lastOrderId", res.body.orderId);
+        bru.setEnvVar("lastOrderId", res.body.orderId);
       }
 
 settings:
