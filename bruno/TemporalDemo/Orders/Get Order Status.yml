@@ -6,9 +6,16 @@ info:
 http:
   method: GET
   url: "{{baseUrl}}/api/orders/{{lastOrderId}}"
+  params:
+    - name: ""
+      value: 0044a070-a71c-49d7-b90f-c1f6055d3d04
+      type: query
   auth: inherit
 
 runtime:
+  variables:
+    - name: lastOrderId
+      value: 0044a070-a71c-49d7-b90f-c1f6055d3d04
   assertions:
     - expression: res.status
       operator: eq
@@ -24,4 +31,3 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-
